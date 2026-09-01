@@ -16,14 +16,16 @@ public class Camera {
     public Camera(int imageWidth, int imageHeight, Vector origin) {
         this.imageWidth = imageWidth;
         this.imageHeight = imageHeight;
+        if (imageWidth <= 0 || imageHeight <= 0) {
+            throw new IllegalArgumentException("Image dimensions must be positive");
+        }
         double aspectRatio = (double) imageWidth / imageHeight;
         this.planeHeight = 2.0;
         this.planeWidth = aspectRatio * planeHeight;
         this.origin = origin;
     }
     public Camera(int imageWidth, int imageHeight) {
-        Vector origo = new Vector(0, 0, 0);
-        this(imageWidth, imageHeight, origo);
+        this(imageWidth, imageHeight, new Vector(0, 0, 0));
     }
 
     public Ray getRay(int px, int py) {
