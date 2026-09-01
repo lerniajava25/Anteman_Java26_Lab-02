@@ -2,17 +2,17 @@ package raytracer.shapes;
 
 import raytracer.ray.HitRecord;
 import raytracer.ray.Ray;
-import raytracer.ray.Vector;
+import raytracer.ray.Vector3D;
 import raytracer.shapes.properties.Material;
 
 import java.util.Optional;
 
 public class Sphere implements Shape {
-    private final Vector center;
+    private final Vector3D center;
     private final double radius;
     private final Material material;
 
-    public Sphere(Vector center, double radius, Material material) {
+    public Sphere(Vector3D center, double radius, Material material) {
         this.center = center;
         this.radius = radius;
         this.material = material;
@@ -20,8 +20,8 @@ public class Sphere implements Shape {
 
     @Override
     public Optional<HitRecord> hit(Ray ray) {
-        Vector oc = ray.origin().subtract(center);
-        if (ray.direction().equals(new Vector(0,0,0))) {
+        Vector3D oc = ray.origin().subtract(center);
+        if (ray.direction().equals(new Vector3D(0,0,0))) {
             throw new IllegalArgumentException("Ray direction cannot be zero");
         }
         double a = ray.direction().dotProduct(ray.direction());
@@ -42,8 +42,8 @@ public class Sphere implements Shape {
             return Optional.empty();
         }
 
-        Vector point = ray.origin().add(ray.direction().scale(t));
-        Vector normal = point.subtract(center).normalize();
+        Vector3D point = ray.origin().add(ray.direction().scale(t));
+        Vector3D normal = point.subtract(center).normalize();
         return Optional.of(new HitRecord(t, point, normal, material));
     }
 }
