@@ -20,10 +20,15 @@ public record Vector3D(double x, double y, double z) {
         return Math.sqrt(dotProduct(this));
     }
     public Vector3D normalize() {
-        if (length() <= 0) {
-            throw new ArithmeticException("Cannot normalize a zero or negative length vector");
+        double l = this.length();
+
+        if (Double.isNaN(l)) {
+            throw new ArithmeticException("Cannot normalize a NaN vector");
         }
-        double l = length();
+        if (!Double.isFinite(l) || l <= 0) {
+            throw new ArithmeticException("Cannot normalize a zero, infinite or negative length vector");
+        }
+
         return new Vector3D(this.x / l, this.y / l, this.z / l);
     }
     public boolean coordinatesNotDefined() {
