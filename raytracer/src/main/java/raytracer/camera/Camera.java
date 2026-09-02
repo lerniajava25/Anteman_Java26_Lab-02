@@ -28,13 +28,20 @@ public class Camera {
         this(imageWidth, imageHeight, new Vector3D(0, 0, 0));
     }
 
+    /**
+     * Creates a normalized ray from the camera origin through the center of a pixel.
+     *
+     * @param px the horizontal pixel coordinate
+     * @param py the vertical pixel coordinate
+     * @return a ray directed through the specified pixel
+     */
     public Ray getRay(int px, int py) {
         double u = (px + 0.5) / imageWidth;
         double v = (py + 0.5) / imageHeight;
 
         double x = (u - 0.5) * planeWidth;
         double y = (0.5 - v) * planeHeight;
-        double z = -1.0; // camera is looking down the negative z-axis and plane is at z=-1.0
+        double z = 10.0; // camera is looking down the positive z-axis and plane is at z=10.0
 
         Vector3D direction = new Vector3D(x, y, z).subtract(origin).normalize();
         return new Ray(origin, direction);

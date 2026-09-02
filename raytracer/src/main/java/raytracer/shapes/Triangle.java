@@ -14,11 +14,20 @@ public class Triangle implements Shape {
     private final Material material;
     private static final double EPSILON = 0.0000001;
 
+    /**
+     * Creates a triangle from three finite vertices and a material.
+     *
+     * @param v0       the first vertex
+     * @param v1       the second vertex
+     * @param v2       the third vertex
+     * @param material the triangle's material
+     * @throws IllegalArgumentException if a vertex is null or not finite
+     */
     public Triangle(Vector3D v0, Vector3D v1, Vector3D v2, Material material) {
         if (v0 == null || v1 == null || v2 == null) {
             throw new IllegalArgumentException("Vertices cannot be null");
         }
-        if (!v0.isFinite() || !v1.isFinite() || !v2.isFinite()) {
+        if (v0.isNotFinite() || v1.isNotFinite() || v2.isNotFinite()) {
             throw new IllegalArgumentException("Vertices must be finite");
         }
         this.v0 = v0;

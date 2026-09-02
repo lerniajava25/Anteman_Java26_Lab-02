@@ -16,6 +16,16 @@ public final class Renderer {
         // Empty constructor, needed for export of functions
     }
 
+    /**
+     * Renders a scene from the specified camera to a P3-format image file.
+     *
+     * @param scene    the scene to render
+     * @param camera   the camera used to generate pixel rays
+     * @param width    the image width in pixels
+     * @param height   the image height in pixels
+     * @param filename the output file path
+     * @throws IOException if the output file cannot be written
+     */
     public static void render(Scene scene, Camera camera, int width, int height, String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new  FileWriter(filename))) {
             writer.write("P3");
@@ -35,6 +45,7 @@ public final class Renderer {
                             .orElse(new Color(0.1, 0.1, 0.2)); // background color
 
                     writer.write(toPixel(color));
+                    writer.newLine();
                 }
             }
         }
