@@ -1,7 +1,7 @@
 package raytracer.camera;
 
 import raytracer.ray.Ray;
-import raytracer.ray.Vector;
+import raytracer.ray.Vector3D;
 
 /**
  * The type Camera.
@@ -11,9 +11,9 @@ public class Camera {
     private final int imageHeight;
     private final double planeWidth;
     private final double planeHeight;
-    private final Vector origin;
+    private final Vector3D origin;
 
-    public Camera(int imageWidth, int imageHeight, Vector origin) {
+    public Camera(int imageWidth, int imageHeight, Vector3D origin) {
         this.imageWidth = imageWidth;
         this.imageHeight = imageHeight;
         if (imageWidth <= 0 || imageHeight <= 0) {
@@ -25,7 +25,7 @@ public class Camera {
         this.origin = origin;
     }
     public Camera(int imageWidth, int imageHeight) {
-        this(imageWidth, imageHeight, new Vector(0, 0, 0));
+        this(imageWidth, imageHeight, new Vector3D(0, 0, 0));
     }
 
     public Ray getRay(int px, int py) {
@@ -36,7 +36,7 @@ public class Camera {
         double y = (0.5 - v) * planeHeight;
         double z = -1.0; // camera is looking down the negative z-axis and plane is at z=-1.0
 
-        Vector direction = new Vector(x, y, z).subtract(origin).normalize();
+        Vector3D direction = new Vector3D(x, y, z).subtract(origin).normalize();
         return new Ray(origin, direction);
     }
 }
