@@ -16,7 +16,7 @@ public class Main {
         int height = 300;
         Scene scene = new Scene();
         scene.add(new Sphere(new Vector3D(1, 0, -5), 1.0, new SolidColor(new Color(1, 0, 0))));
-         scene.add(new Sphere(new Vector3D(-1, -1, -3), 0.5, new SolidColor(new Color(0, 1, 0))));
+         scene.add(new Sphere(new Vector3D(-1, -1, -2), 0.5, new SolidColor(new Color(0, 1, 0))));
         scene.add(new Triangle(
                 new Vector3D(0, 1, -3),
                 new Vector3D(-1, -1, -3),
