@@ -11,16 +11,19 @@ import java.util.Optional;
 /**
  * The class Renderer for rendering the scene to a file
  */
-public class Renderer {
-    public Renderer() {
+public final class Renderer {
+    private Renderer() {
         // Empty constructor, needed for export of functions
     }
 
     public static void render(Scene scene, Camera camera, int width, int height, String filename) throws IOException {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            writer.println("P3");
-            writer.println(width + " " + height);
-            writer.println("255");
+        try (BufferedWriter writer = new BufferedWriter(new  FileWriter(filename))) {
+            writer.write("P3");
+            writer.newLine();
+            writer.write(width + " " + height);
+            writer.newLine();
+            writer.write("255");
+            writer.newLine();
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
@@ -31,16 +34,16 @@ public class Renderer {
                             .map(h -> h.material().colorAt(h))
                             .orElse(new Color(0.1, 0.1, 0.2)); // background color
 
-                    writer.println(toPixel(color));
+                    writer.write(toPixel(color));
                 }
             }
         }
     }
 
     private static String toPixel(Color c) {
-        int r = clamp((int) (c.r() * 255));
-        int g = clamp((int) (c.g() * 255));
-        int b = clamp((int) (c.b() * 255));
+        int r = clamp((int) Math.round(c.r() * 255));
+        int g = clamp((int) Math.round(c.g() * 255));
+        int b = clamp((int) Math.round(c.b() * 255));
         return r + " " + g + " " + b;
     }
 
