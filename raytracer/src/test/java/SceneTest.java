@@ -10,6 +10,10 @@ import raytracer.shapes.Triangle;
 import raytracer.shapes.properties.Color;
 import raytracer.shapes.properties.SolidColor;
 import raytracer.shapes.Sphere;
+import raytracer.shapes.Triangle;
+import raytracer.shapes.properties.Color;
+import raytracer.shapes.properties.SolidColor;
+
 
 import java.util.Optional;
 

@@ -15,6 +15,12 @@ public class Triangle implements Shape {
     private static final double EPSILON = 0.0000001;
 
     public Triangle(Vector3D v0, Vector3D v1, Vector3D v2, Material material) {
+        if (v0 == null || v1 == null || v2 == null) {
+            throw new IllegalArgumentException("Vertices cannot be null");
+        }
+        if (!v0.isFinite() || !v1.isFinite() || !v2.isFinite()) {
+            throw new IllegalArgumentException("Vertices must be finite");
+        }
         this.v0 = v0;
         this.v1 = v1;
         this.v2 = v2;

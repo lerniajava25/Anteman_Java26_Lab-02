@@ -20,6 +20,9 @@ public record Vector3D(double x, double y, double z) {
         return Math.sqrt(dotProduct(this));
     }
     public Vector3D normalize() {
+        if (!length() > 0) {
+            throw new ArithmeticException("Cannot normalize a zero or negative length vector");
+        }
         double l = length();
         return new Vector3D(this.x / l, this.y / l, this.z / l);
     }

@@ -22,8 +22,17 @@ public class Sphere implements Shape {
         if (!center.isFinite()) {
             throw new IllegalArgumentException("Center must be finite");
         }
-        if (radius <= 0) {
-            throw new IllegalArgumentException("Radius must be positive");
+        if (radius == null) {
+            throw new IllegalArgumentException("Radius cannot be null");
+        }
+        if (!Double.isFinite(radius) || radius <= 0) {
+            throw new IllegalArgumentException("Radius must be positive and finite");
+        }
+        if (Double.NaN(radius)) {
+            throw new IllegalArgumentException("Radius must be a number");
+        }
+        if (material == null) {
+            throw new IllegalArgumentException("Material cannot be null");
         }
         this.center = center;
         this.radius = radius;
