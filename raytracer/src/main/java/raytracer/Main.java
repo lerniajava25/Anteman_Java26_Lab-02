@@ -11,6 +11,11 @@ import raytracer.shapes.properties.SolidColor;
 import java.io.IOException;
 
 class Main {
+    /**
+     * Renders the configured scene to {@code output.ppm}.
+     *
+     * @throws IOException if the rendered image cannot be written
+     */
     static void main() throws IOException {
         int width = 400;
         int height = 300;
