@@ -12,6 +12,10 @@ public class Scene {
     private final List<Shape> shapes = new ArrayList<>();
 
     public void add(Shape shape) {
+        if (shape == null) {
+            throw new IllegalArgumentException("Shape cannot be null");
+        }
+
         shapes.add(shape);
     }
 

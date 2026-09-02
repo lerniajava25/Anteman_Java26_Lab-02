@@ -13,20 +13,31 @@ public class Sphere implements Shape {
     private final Material material;
 
     public Sphere(Vector3D center, double radius, Material material) {
+        if (center == null) {
+            throw new IllegalArgumentException("Center cannot be null");
+        }
+        if (!center.coordinatesDefined()) {
+            throw new IllegalArgumentException("Center coordinates must be defined");
+        }
+        if (!center.isFinite()) {
+            throw new IllegalArgumentException("Center must be finite");
+        }
+        if (radius <= 0) {
+            throw new IllegalArgumentException("Radius must be positive");
+        }
         this.center = center;
         this.radius = radius;
         this.material = material;
     }
 
-    @Override
     public Optional<HitRecord> hit(Ray ray) {
-        Vector3D oc = ray.origin().subtract(center);
+        Vector3D oc = ray.origin().subtract(this.center);
         if (ray.direction().equals(new Vector3D(0,0,0))) {
             throw new IllegalArgumentException("Ray direction cannot be zero");
         }
         double a = ray.direction().dotProduct(ray.direction());
         double b = 2.0 * ray.direction().dotProduct(oc);
-        double c = oc.dotProduct(oc) - radius * radius;
+        double c = oc.dotProduct(oc) - radius * radius; // Getting |oc|² - r² to avoid sqrt
         double discriminant = b * b - 4 * a * c;
 
         if (discriminant < 0) {
