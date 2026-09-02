@@ -35,6 +35,7 @@ public final class Renderer {
                             .orElse(new Color(0.1, 0.1, 0.2)); // background color
 
                     writer.write(toPixel(color));
+                    writer.newLine();
                 }
             }
         }

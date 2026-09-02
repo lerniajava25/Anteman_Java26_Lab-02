@@ -18,7 +18,7 @@ public class Triangle implements Shape {
         if (v0 == null || v1 == null || v2 == null) {
             throw new IllegalArgumentException("Vertices cannot be null");
         }
-        if (!v0.isFinite() || !v1.isFinite() || !v2.isFinite()) {
+        if (v0.isNotFinite() || v1.isNotFinite() || v2.isNotFinite()) {
             throw new IllegalArgumentException("Vertices must be finite");
         }
         this.v0 = v0;

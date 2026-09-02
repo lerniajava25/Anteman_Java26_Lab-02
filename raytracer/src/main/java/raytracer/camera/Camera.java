@@ -34,7 +34,7 @@ public class Camera {
 
         double x = (u - 0.5) * planeWidth;
         double y = (0.5 - v) * planeHeight;
-        double z = -1.0; // camera is looking down the negative z-axis and plane is at z=-1.0
+        double z = 10.0; // camera is looking down the positive z-axis and plane is at z=10.0
 
         Vector3D direction = new Vector3D(x, y, z).subtract(origin).normalize();
         return new Ray(origin, direction);

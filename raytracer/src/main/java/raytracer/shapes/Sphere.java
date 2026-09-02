@@ -16,19 +16,19 @@ public class Sphere implements Shape {
         if (center == null) {
             throw new IllegalArgumentException("Center cannot be null");
         }
-        if (!center.coordinatesDefined()) {
+        if (center.coordinatesNotDefined()) {
             throw new IllegalArgumentException("Center coordinates must be defined");
         }
-        if (!center.isFinite()) {
+        if (center.isNotFinite()) {
             throw new IllegalArgumentException("Center must be finite");
         }
-        if (radius == null) {
-            throw new IllegalArgumentException("Radius cannot be null");
+        if (radius < 0) {
+            throw new IllegalArgumentException("Radius cannot be negative");
         }
         if (!Double.isFinite(radius) || radius <= 0) {
             throw new IllegalArgumentException("Radius must be positive and finite");
         }
-        if (Double.NaN(radius)) {
+        if (Double.isNaN(radius)) {
             throw new IllegalArgumentException("Radius must be a number");
         }
         if (material == null) {
