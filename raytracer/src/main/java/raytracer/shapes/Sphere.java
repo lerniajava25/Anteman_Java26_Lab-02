@@ -12,6 +12,14 @@ public class Sphere implements Shape {
     private final double radius;
     private final Material material;
 
+    /**
+     * Creates a sphere with the specified center, radius, and material.
+     *
+     * @param center   the sphere's center
+     * @param radius   the sphere's positive, finite radius
+     * @param material the sphere's material
+     * @throws IllegalArgumentException if the center or material is null, the center coordinates are undefined or non-finite, or the radius is not positive and finite
+     */
     public Sphere(Vector3D center, double radius, Material material) {
         if (center == null) {
             throw new IllegalArgumentException("Center cannot be null");
