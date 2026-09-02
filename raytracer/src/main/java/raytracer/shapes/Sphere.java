@@ -21,6 +21,9 @@ public class Sphere implements Shape {
     @Override
     public Optional<HitRecord> hit(Ray ray) {
         Vector oc = ray.origin().subtract(center);
+        if (ray.direction().equals(new Vector(0,0,0))) {
+            throw new IllegalArgumentException("Ray direction cannot be zero");
+        }
         double a = ray.direction().dotProduct(ray.direction());
         double b = 2.0 * ray.direction().dotProduct(oc);
         double c = oc.dotProduct(oc) - radius * radius;

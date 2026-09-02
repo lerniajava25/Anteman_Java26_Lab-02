@@ -2,25 +2,25 @@ package raytracer.ray;
 
 public record Vector(double x, double y, double z) {
     public Vector add(Vector o) {
-        return new Vector(x + o.x, y + o.y, z + o.z);
+        return new Vector(this.x + o.x, this.y + o.y, this.z + o.z);
     }
     public Vector subtract(Vector o) {
-        return new Vector(x - o.x, y - o.y, z - o.z);
+        return new Vector(this.x - o.x, this.y - o.y, this.z - o.z);
     }
     public Vector scale(double s) {
-        return new Vector(x * s, y * s, z * s);
+        return new Vector(this.x * s, this.y * s, this.z * s);
     }
     public double dotProduct(Vector o) {
-        return x * o.x + y * o.y + z * o.z;
+        return this.x * o.x + this.y * o.y + this.z * o.z;
     }
     public Vector crossProduct(Vector o) {
-        return new Vector(y * o.z - z * o.y, z * o.x - x * o.z, x * o.y - y * o.x);
+        return new Vector(this.y * o.z - this.z * o.y, this.z * o.x - this.x * o.z, this.x * o.y - this.y * o.x);
     }
     public double length() {
         return Math.sqrt(dotProduct(this));
     }
     public Vector normalize() {
         double l = length();
-        return new Vector(x / l, y / l, z / l);
+        return new Vector(this.x / l, this.y / l, this.z / l);
     }
 }
