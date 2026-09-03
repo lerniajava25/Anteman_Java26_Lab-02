@@ -12,7 +12,7 @@ import java.io.IOException;
 
 class Main {
     /**
-     * Renders the configured scene to {@code output.ppm}.
+     * Renders the configured scene to {@code output.png}.
      *
      * @throws IOException if the rendered image cannot be written
      */
@@ -20,7 +20,7 @@ class Main {
         int width = 400;
         int height = 300;
         Scene scene = new Scene();
-        scene.add(new Sphere(new Vector3D(1, 0, 55), 1.0, new SolidColor(new Color(1, 0, 0))));
+        scene.add(new Sphere(new Vector3D(1, 0, 15), 0.8, new SolidColor(new Color(1, 0, 0))));
         scene.add(new Sphere(new Vector3D(-1, -1, 52), 1.5, new SolidColor(new Color(0, 1, 0))));
         scene.add(new Triangle(
                 new Vector3D(0, 0, 30),
@@ -28,6 +28,6 @@ class Main {
                 new Vector3D(1, 2, 31),
                 new SolidColor(new Color(0, 0, 1))));
         Camera camera = new Camera(width, height);
-        Renderer.render(scene, camera, width, height, "output.ppm");
+        Renderer.render(scene, camera, width, height, "output.png");
     }
 }
