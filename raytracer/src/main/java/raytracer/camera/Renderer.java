@@ -1,6 +1,7 @@
 package raytracer.camera;
 
 import raytracer.Scene;
+import raytracer.environment.PointLight;
 import raytracer.ray.Ray;
 import raytracer.shapes.properties.Color;
 
@@ -25,14 +26,14 @@ public final class Renderer {
      * @param filename the output file path
      * @throws IOException if the output file cannot be written
      */
-    public static void render(Scene scene, Camera camera, int width, int height, String filename) throws IOException {
+    public static void render(Scene scene, Camera camera, PointLight  light, int width, int height, String filename) throws IOException {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Ray ray = camera.getRay(x, y);
                 Color color = scene.trace(ray)
-                        .map(h -> h.material().colorAt(h))
+                        .map(h -> h.material().colorAt(h, light))
                         .orElse(new Color(0.1, 0.1, 0.2));
 
                 int rgb = colorToArgb(color);

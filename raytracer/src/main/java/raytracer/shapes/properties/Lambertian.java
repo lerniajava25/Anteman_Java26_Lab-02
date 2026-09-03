@@ -1,19 +1,24 @@
 package raytracer.shapes.properties;
 
+import raytracer.environment.PointLight;
 import raytracer.ray.HitRecord;
-
-public class Lambertian implements Material {
-    private final Color albedo; // Color/grade of reflection (0.0-1.0)
-
-    public Lambertian(Color albedo) {
-        this.albedo = albedo;
-    }
-
+import raytracer.ray.Vector3D;
+/**
+* Record Lambertian material
+* Calculating how much light is reflected from the surface
+* and how much is reflected from the light and mixing them
+* @param baseColor
+* */
+public record Lambertian(Color baseColor) implements Material {
     @Override
-    public Color colorAt(HitRecord hit) {
-        /*
-        * In here we would calculate the effect of light on the material. (If we had a light source)
-        * */
-        return albedo;
+    public Color colorAt(HitRecord hit, PointLight light) {
+        Vector3D lightDir = light.position().subtract(hit.point()).normalize();
+        double diffuse = Math.max(0.0, hit.normal().dotProduct(lightDir));
+
+        double r = baseColor.r() * light.color().r() * diffuse * light.intensity();
+        double g = baseColor.g() * light.color().g() * diffuse * light.intensity();
+        double b = baseColor.b() * light.color().b() * diffuse * light.intensity();
+
+        return new Color(r, g, b);
     }
 }

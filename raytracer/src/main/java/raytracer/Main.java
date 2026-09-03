@@ -2,6 +2,7 @@ package raytracer;
 
 import raytracer.camera.Camera;
 import raytracer.camera.Renderer;
+import raytracer.environment.PointLight;
 import raytracer.ray.Vector3D;
 import raytracer.shapes.Sphere;
 import raytracer.shapes.Triangle;
@@ -30,12 +31,13 @@ class Main {
                 new Vector3D(1, 2, 31),
                 new SolidColor(new Color(0, 0, 1))));
 
-        Material redDiffuse = new Lambertian(new Color(0.8, 0.1, 0.1));
-        Sphere sphere3 = new Sphere(new Vector3D(-2, 2, 50), 1.0, redDiffuse);
+        Material greyDiffuse = new Lambertian(new Color(0.5, 0.5, 0.5));
+        Sphere sphere3 = new Sphere(new Vector3D(-2, 2, 50), 1.0, greyDiffuse);
 
         scene.add(sphere3);
 
         Camera camera = new Camera(width, height);
-        Renderer.render(scene, camera, width, height, "output.png");
+        PointLight light = new PointLight(new Vector3D(-2, 10, 10), new Color(0, 1, 0), 1); // green color PointLight
+        Renderer.render(scene, camera, light, width, height, "output.png");
     }
 }
