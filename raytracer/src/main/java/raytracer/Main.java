@@ -15,7 +15,8 @@ import java.io.IOException;
 
 class Main {
     /**
-     * Renders the configured scene to {@code output.png}.
+     * Entry point for the raytracer application. Sets up a scene with spheres and triangles,
+     * creates a camera and point light, and renders the scene to {@code output.png}.
      *
      * @throws IOException if the rendered image cannot be written
      */

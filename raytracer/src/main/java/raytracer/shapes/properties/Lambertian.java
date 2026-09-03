@@ -10,6 +10,15 @@ import raytracer.ray.Vector3D;
 * @param baseColor
 * */
 public record Lambertian(Color baseColor) implements Material {
+    /**
+     * Computes the color at the hit point using Lambertian (diffuse) shading.
+     * The color is calculated based on the angle between the surface normal and
+     * the light direction, modulated by the base color, light color, and intensity.
+     *
+     * @param hit   the hit record containing the point and normal of the surface intersection
+     * @param light the point light illuminating the surface
+     * @return the computed color after applying diffuse lighting
+     */
     @Override
     public Color colorAt(HitRecord hit, PointLight light) {
         Vector3D lightDir = light.position().subtract(hit.point()).normalize();
