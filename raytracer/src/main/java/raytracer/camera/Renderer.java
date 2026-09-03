@@ -16,7 +16,7 @@ public final class Renderer {
     }
 
 /*    *//**
-     * Renders a scene from the specified camera to a P3-format image file.
+     * Renders a scene from the specified camera to a png-format image file.
      *
      * @param scene    the scene to render
      * @param camera   the camera used to generate pixel rays
