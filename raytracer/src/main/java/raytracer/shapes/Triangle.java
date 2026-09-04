@@ -7,7 +7,7 @@ import raytracer.shapes.properties.Material;
 
 import java.util.Optional;
 
-public class Triangle implements Shape {
+public final class Triangle implements Shape {
     private final Vector3D v0;
     private final Vector3D v1;
     private final Vector3D v2;
@@ -21,7 +21,7 @@ public class Triangle implements Shape {
      * @param v1       the second vertex
      * @param v2       the third vertex
      * @param material the triangle's material
-     * @throws IllegalArgumentException if a vertex is null or not finite
+     * @throws IllegalArgumentException if a vertex is null, a vertex is not finite or the material is null
      */
     public Triangle(Vector3D v0, Vector3D v1, Vector3D v2, Material material) {
         if (v0 == null || v1 == null || v2 == null) {
@@ -29,6 +29,9 @@ public class Triangle implements Shape {
         }
         if (v0.isNotFinite() || v1.isNotFinite() || v2.isNotFinite()) {
             throw new IllegalArgumentException("Vertices must be finite");
+        }
+        if (material == null) {
+            throw new IllegalArgumentException("Material cannot be null");
         }
         this.v0 = v0;
         this.v1 = v1;
