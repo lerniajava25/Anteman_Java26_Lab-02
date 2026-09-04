@@ -26,18 +26,27 @@ public final class Renderer {
      * @param filename the output file path
      * @throws IOException if the output file cannot be written
      */
-    public static void render(Scene scene, Camera camera, PointLight  light, int width, int height, String filename) throws IOException {
+    public static void render(Scene scene, Camera camera, PointLight light, int width, int height, String filename) throws IOException {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
+        Color backgroundColor = new Color(0.1, 0.1, 0.2); // setting background color to dark gray, change to your liking
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Ray ray = camera.getRay(x, y);
                 Color color = scene.trace(ray)
                         .map(h -> h.material().colorAt(h, light))
-                        .orElse(new Color(0.1, 0.1, 0.2));
+                        .orElse(backgroundColor);
 
                 int rgb = colorToArgb(color);
                 image.setRGB(x, y, rgb);
+            }
+        }
+
+        File outputFile = new File(filename);
+        File parentFolder = outputFile.getParentFile();
+        if (parentFolder != null && !parentFolder.exists()) {
+            boolean created = parentFolder.mkdirs();
+            if (!created) {
+                throw new IOException("Kunde inte skapa mapp för filen: " + parentFolder);
             }
         }
 

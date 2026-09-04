@@ -38,7 +38,7 @@ En ny 'Shape' kräver **ingen ändring** i `Scene`, `Renderer` eller `Camera` �
        }
    }
    ```
-2. Lägg till som en instans i scenen:
+2. Lägg till som en instans i scenen (i Main):
    ```java
    scene.add(new EnNyShape(...));
    ```

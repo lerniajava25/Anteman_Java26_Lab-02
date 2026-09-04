@@ -23,7 +23,10 @@ class Main {
         int width = 400;
         int height = 300;
         Scene scene = new Scene();
-        scene.add(new Sphere(new Vector3D(1, 0, 15), 0.8, new SolidColor(new Color(1, 0, 0))));
+
+        Material greyDiffuse = new Lambertian(new Color(0.5, 0.5, 0.5));
+
+        scene.add(new Sphere(new Vector3D(1, 0, 15), 0.8, greyDiffuse));
         scene.add(new Sphere(new Vector3D(-1, -1, 52), 1.5, new SolidColor(new Color(0, 1, 0))));
         scene.add(new Triangle(
                 new Vector3D(0, 0, 30),
@@ -31,13 +34,13 @@ class Main {
                 new Vector3D(1, 2, 31),
                 new SolidColor(new Color(0, 0, 1))));
 
-        Material greyDiffuse = new Lambertian(new Color(0.5, 0.5, 0.5));
+
         Sphere sphere3 = new Sphere(new Vector3D(-2, 2, 50), 1.0, greyDiffuse);
 
         scene.add(sphere3);
 
         Camera camera = new Camera(width, height);
-        PointLight light = new PointLight(new Vector3D(-2, 10, 10), new Color(0, 1, 0), 1); // green color PointLight
+        PointLight light = new PointLight(new Vector3D(-2, 10, 10), new Color(1, 1, 1), 1); // white color PointLight
         Renderer.render(scene, camera, light, width, height, "./renders/output.png");
     }
 }
