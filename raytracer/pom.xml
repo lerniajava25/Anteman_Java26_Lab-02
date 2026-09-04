@@ -22,5 +22,47 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>verify-style</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <logViolationsToConsole>true</logViolationsToConsole>
+                    <checkstyleRules>
+                        <module name="Checker">
+                            <property name="haltOnException" value="false"/>
+                            <!-- Checks for Size Violations.                    -->
+                            <!-- See http://checkstyle.sf.net/config_sizes.html -->
+                            <module name="FileLength">
+                                <property name="max" value="3500" />
+                                <property name="fileExtensions" value="java"/>
+                            </module>
 
+                            <!-- Checks for whitespace                               -->
+                            <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+                            <module name="FileTabCharacter"/>
+
+                            <module name="TreeWalker">
+                                <module name="StaticVariableName"/>
+                                <module name="TypeName">
+                                    <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$"/>
+                                </module>
+                            </module>
+                        </module>
+                    </checkstyleRules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

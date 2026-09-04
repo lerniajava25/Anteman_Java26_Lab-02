@@ -10,7 +10,8 @@ public record Ray(Vector3D origin, Vector3D direction) {
             throw new IllegalArgumentException("Origin must be finite");
         }
         if (origin.coordinatesNotDefined()) {
-            throw new IllegalArgumentException("Origin coordinates must be defined");
+            throw new IllegalArgumentException(
+                    "Origin coordinates must be defined");
         }
         if (direction == null) {
         throw new IllegalArgumentException("Direction cannot be null");
@@ -19,9 +20,11 @@ public record Ray(Vector3D origin, Vector3D direction) {
             throw new IllegalArgumentException("Direction must be finite");
         }
         if (direction.coordinatesNotDefined()) {
-            throw new IllegalArgumentException("Direction coordinates must be defined");
+            throw new IllegalArgumentException(
+                    "Direction coordinates must be defined");
         }
         if (direction.isZero()) {
-            throw new IllegalArgumentException("Direction cannot be zero");}
+            throw new IllegalArgumentException("Direction cannot be zero");
         }
+    }
 }

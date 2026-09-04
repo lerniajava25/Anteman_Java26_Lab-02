@@ -38,6 +38,6 @@ class Main {
 
         Camera camera = new Camera(width, height);
         PointLight light = new PointLight(new Vector3D(-2, 10, 10), new Color(0, 1, 0), 1); // green color PointLight
-        Renderer.render(scene, camera, light, width, height, "output.png");
+        Renderer.render(scene, camera, light, width, height, "./renders/output.png");
     }
 }

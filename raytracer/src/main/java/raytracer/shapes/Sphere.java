@@ -7,7 +7,7 @@ import raytracer.shapes.properties.Material;
 
 import java.util.Optional;
 
-public class Sphere implements Shape {
+public final class Sphere implements Shape {
     private final Vector3D center;
     private final double radius;
     private final Material material;

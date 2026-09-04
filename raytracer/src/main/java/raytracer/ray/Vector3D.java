@@ -14,7 +14,11 @@ public record Vector3D(double x, double y, double z) {
         return this.x * o.x + this.y * o.y + this.z * o.z;
     }
     public Vector3D crossProduct(Vector3D o) {
-        return new Vector3D(this.y * o.z - this.z * o.y, this.z * o.x - this.x * o.z, this.x * o.y - this.y * o.x);
+        return new Vector3D(
+                this.y * o.z - this.z * o.y,
+                this.z * o.x - this.x * o.z,
+                this.x * o.y - this.y * o.x
+        );
     }
     /**
      * Computes the Euclidean length of this vector.
